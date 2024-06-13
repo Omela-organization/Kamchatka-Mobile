@@ -24,17 +24,14 @@ class MainScreen extends StatelessWidget {
         itemBuilder: (context, idx) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Container(
                 child: Text(placeModels[idx].title),
               ),
-
               Container(
                 child: Image.network(placeModels[idx].imageUri.toString()),
               ),
-
             ]),
           );
           //   CachedNetworkImage(

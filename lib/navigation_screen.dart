@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_app/map_screen.dart';
 import 'package:green_app/mock_place_list.dart';
+import 'package:green_app/test_screen.dart';
 
 import 'main_screen.dart';
 
@@ -20,6 +21,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       placeModels: mockPlaceList,
     ),
     MapScreen(),
+    TestScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -46,6 +48,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
             label: 'Карта',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.transfer_within_a_station),
+            label: 'Тест',
           ),
         ],
         currentIndex: _selectedIndex,
