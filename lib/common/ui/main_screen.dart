@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:green_app/features/places/ui/place_model.dart';
 
@@ -26,12 +25,8 @@ class MainScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Container(
-                child: Text(placeModels[idx].title),
-              ),
-              Container(
-                child: Image.network(placeModels[idx].imageUri.toString()),
-              ),
+              Text(placeModels[idx].title),
+              Image.network(placeModels[idx].imageUri.toString()),
             ]),
           );
           //   CachedNetworkImage(

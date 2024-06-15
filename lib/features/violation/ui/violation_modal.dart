@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:green_app/common/ui/modal_body.dart';
 import 'package:green_app/resources/resources.dart';
 
@@ -10,7 +8,7 @@ class ViolationSendModalBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ModalBody(
-        title: 'Отправьте сообщение',
+        title: 'Выберите тип нарушения',
         paddingFromTitle: 20,
         // contentPadding: EdgeInsets.only(bottom: 10),
         bodyWidget: [
@@ -53,8 +51,8 @@ class FeedbackMessageWidget extends StatelessWidget {
     this.minHeight = 115,
     this.minWidth = 110,
     required this.imagePath,
-  })  : this.titleColor = titleColor.withOpacity(0.9),
-        this.backgroundColor = backgroundColor ?? const Color(0xFFEEF2E3);
+  })  : titleColor = titleColor.withOpacity(0.9),
+        backgroundColor = backgroundColor ?? const Color(0xFFEEF2E3);
   final String title;
   final Color backgroundColor;
   final Color? titleColor;
@@ -92,7 +90,7 @@ class FeedbackMessageWidget extends StatelessWidget {
               child: DecoratedBox(
                   decoration: BoxDecoration(
                       color: backgroundColor,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(10),
                           bottomRight: Radius.circular(10))),
                   child: Center(

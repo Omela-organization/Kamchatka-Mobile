@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:is_first_run/is_first_run.dart';
 
 import '../common/ui/navigation_screen.dart';
 
-void main() {
+void main() async {
+  // При первом открытии приложения
+  // 1. Сделать запрос на получение маршрутов
+  // 2. Распарсить все маршруты и сохранить в drift
+  bool firstRun = await IsFirstRun.isFirstRun();
+  if (firstRun) {
+
+  }
+
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
 

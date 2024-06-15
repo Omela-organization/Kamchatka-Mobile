@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_app/features/violation/ui/violation_modal.dart';
 import 'package:green_app/features/feedback/ui/feedback_modal.dart';
-import 'package:green_app/features/feedback/ui/stars_widget.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});

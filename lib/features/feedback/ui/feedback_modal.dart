@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:green_app/common/ui/modal_body.dart';
 
 class RouteModalBody extends StatelessWidget {
@@ -11,24 +9,24 @@ class RouteModalBody extends StatelessWidget {
     return ModalBody(
       title: 'Оцените маршрут',
       bodyWidget: [
-        QuestionBlocWrapper(
+        const QuestionBlocWrapper(
           question: 'Как бы Вы оценили живописность маршрута?',
           count: 5,
         ),
-        QuestionBlocWrapper(
+        const QuestionBlocWrapper(
           question: 'Как бы Вы оценили чистоту маршрута?',
           count: 5,
         ),
-        QuestionBlocWrapper(
+        const QuestionBlocWrapper(
           question:
               'Как бы Вы оценили обустроенность маршрута (указатели, информационные аншлаги)?',
           count: 5,
         ),
-        QuestionBlocWrapper(
+        const QuestionBlocWrapper(
           question: 'Насколько соответствовали ожидания Вашему опыту?',
           count: 5,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Align(
@@ -91,12 +89,7 @@ class QuestionBlocWidget extends StatefulWidget {
   final Color inactiveBackColor;
   final Color inactiveTextColor;
   final EdgeInsets? padding;
-
-  // final double minValue;
-  // final double maxValue;
   final int count;
-
-  // final double startValue;
   final Function(int)? onChanged;
 
   @override
@@ -105,11 +98,6 @@ class QuestionBlocWidget extends StatefulWidget {
 
 class _QuestionBlocWidgetState extends State<QuestionBlocWidget> {
   late int currentValue;
-
-  // late final Color activeBackColor;
-  // late final Color activeTextColor;
-  // late final Color inactiveBackColor;
-  // late final Color inactiveTextColor;
 
   @override
   void initState() {
@@ -134,7 +122,7 @@ class _QuestionBlocWidgetState extends State<QuestionBlocWidget> {
             widget.question,
             textAlign: TextAlign.center,
           )),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           SizedBox(
@@ -163,7 +151,7 @@ class _QuestionBlocWidgetState extends State<QuestionBlocWidget> {
                           ? widget.activeBackColor
                           : widget.inactiveBackColor,
                       shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Center(
                       child: Text(
