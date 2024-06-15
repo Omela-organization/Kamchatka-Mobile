@@ -15,7 +15,14 @@ class MainApp extends StatelessWidget {
       home: const NavigationScreen(),
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF018456),
+          primary: const Color(0xFF024C30),
+          onPrimary: const Color(0xFFEEF2E3),
+          secondary: const Color(0xFF018456),
+          tertiary: const Color(0xFFBCEB00),
+
+        ),
         textTheme: Theme.of(context).textTheme.apply(
               fontSizeFactor: 1.1,
               fontSizeDelta: 2.0,
