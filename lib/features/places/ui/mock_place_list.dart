@@ -1,4 +1,4 @@
-import 'package:green_app/place_model.dart';
+import 'package:green_app/features/places/ui/place_model.dart';
 
 final mockPlaceList = [
   PlaceModel(

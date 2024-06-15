@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:green_app/map_screen.dart';
-import 'package:green_app/mock_place_list.dart';
-import 'package:green_app/test_screen.dart';
+import 'package:green_app/features/maps/ui/map_screen.dart';
+import 'package:green_app/features/places/ui/mock_place_list.dart';
+import 'package:green_app/common/ui/test_screen.dart';
 
 import 'main_screen.dart';
 
@@ -34,7 +34,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Зеленая кнопка'),
+        title: const Text('Это Камчатка.'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

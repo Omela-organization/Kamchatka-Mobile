@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:green_app/feedback_modal.dart';
-import 'package:green_app/route_modal.dart';
-import 'package:green_app/stars_widget.dart';
+import 'package:green_app/features/violation/ui/violation_modal.dart';
+import 'package:green_app/features/feedback/ui/feedback_modal.dart';
+import 'package:green_app/features/feedback/ui/stars_widget.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
@@ -27,7 +27,7 @@ class TestScreen extends StatelessWidget {
                 showModalBottomSheet(
                   isScrollControlled: true,
                   context: context,
-                  builder: (context) => const FeedbackModalBody(),
+                  builder: (context) => const ViolationSendModalBody(),
                 ),
           )
         ],

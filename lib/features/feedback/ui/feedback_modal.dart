@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:green_app/modal_body.dart';
+import 'package:green_app/common/ui/modal_body.dart';
 
 class RouteModalBody extends StatelessWidget {
   const RouteModalBody({super.key});
@@ -65,7 +65,9 @@ class QuestionBlocWrapper extends StatelessWidget {
       question: question,
       count: count,
       activeBackColor: Theme.of(context).primaryColor,
-      inactiveTextColor: Colors.black,
+      activeTextColor: Theme.of(context).colorScheme.onPrimary,
+      inactiveBackColor: Theme.of(context).colorScheme.onPrimary,
+      inactiveTextColor: Theme.of(context).primaryColor,
     );
   }
 }

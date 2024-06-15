@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:green_app/place_model.dart';
+import 'package:green_app/features/places/ui/place_model.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({

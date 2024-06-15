@@ -12,6 +12,7 @@ dependencies:
   flutter_map: ^7.0.0
   cached_network_image: ^3.3.1
   flutter_launcher_icons: ^0.13.1
+  is_first_run: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -19,7 +20,11 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/violation/
 
 dependency_overrides:
   meta: ">=1.11.0 <1.15.0"

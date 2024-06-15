@@ -38,9 +38,9 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Типа карта'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Типа карта'),
+      // ),
       body: FlutterMap(
         mapController: _mapController,
         options: const MapOptions(
