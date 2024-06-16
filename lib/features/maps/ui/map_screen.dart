@@ -4,17 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:green_app/common/data/route_entity.dart';
 import 'package:green_app/common/data/territory_entity.dart';
+import 'package:green_app/common/repo/territory_repo.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({
-    super.key,
-    required this.routes,
-    required this.territories,
-  });
-
-  final List<RouteEntity> routes;
-  final List<TerritoryEntity> territories;
+  const MapScreen({super.key});
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -23,13 +17,15 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late final MapController _mapController;
 
-  // late final RouteEntity routeEntity;
-
   final Map<int, Color> territorryColor = {};
+  late final List<RouteEntity> routes;
+  late final List<TerritoryEntity> territories;
 
   @override
   void initState() {
     _mapController = MapController();
+    routes = RouteTerritoryRepo().routes;
+    territories = RouteTerritoryRepo().territories;
     // routeEntity =
     //     RouteEntity.fromBackendJson(jsonDecode(track) as Map<String, dynamic>);
     super.initState();
@@ -59,8 +55,8 @@ class _MapScreenState extends State<MapScreen> {
             userAgentPackageName: 'com.example.flutter_map_example',
           ),
           PolylineLayer(
-            polylines: List.generate(widget.routes.length, (index) {
-              final route = widget.routes[index];
+            polylines: List.generate(routes.length, (index) {
+              final route = routes[index];
               late final Color trackColor;
               if (!territorryColor.containsKey((route.territoryId))) {
                 territorryColor[route.territoryId] = generateBrightColor();
@@ -78,8 +74,8 @@ class _MapScreenState extends State<MapScreen> {
           ),
           PolygonLayer(
             // hitNotifier: ,
-            polygons: List.generate(widget.territories.length, (index) {
-              final territory = widget.territories[index];
+            polygons: List.generate(territories.length, (index) {
+              final territory = territories[index];
               late final Color trackColor;
               if (!territorryColor.containsKey((territory.id))) {
                 territorryColor[territory.id] = generateBrightColor();

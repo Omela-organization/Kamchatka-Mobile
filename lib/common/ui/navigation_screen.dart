@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:green_app/common/data/route_entity.dart';
 import 'package:green_app/features/maps/ui/map_screen.dart';
 import 'package:green_app/features/places/ui/mock_place_list.dart';
 import 'package:green_app/common/ui/test_screen.dart';
 
-import '../data/territory_entity.dart';
 import 'main_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({
-    super.key,
-    required this.routes,
-    required this.territories,
-  });
-
-  final List<RouteEntity> routes;
-  final List<TerritoryEntity> territories;
+  const NavigationScreen({super.key});
 
   @override
   State<NavigationScreen> createState() => _NavigationScreenState();
@@ -27,10 +18,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     MainScreen(
       placeModels: mockPlaceList,
     ),
-    MapScreen(
-      routes: widget.routes,
-      territories: widget.territories,
-    ),
+    MapScreen(),
     const TestScreen(),
   ];
 
