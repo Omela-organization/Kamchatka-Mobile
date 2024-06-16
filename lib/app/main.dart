@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:green_app/common/repo/camera_repo.dart';
 import 'package:green_app/common/repo/route_form_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await RouteTerritoryRepo.init();
+
+  await CameraRepoSingleton().init();
 
   // При первом открытии приложения
   // 1. Сделать запрос на получение маршрутов

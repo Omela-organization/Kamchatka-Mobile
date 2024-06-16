@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:green_app/common/repo/registration_form_repo.dart';
 
 import '../data/app_db.dart';

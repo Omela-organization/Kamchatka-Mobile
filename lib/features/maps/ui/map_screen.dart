@@ -8,7 +8,6 @@ import 'package:green_app/common/repo/territory_repo.dart';
 import 'package:green_app/features/route_entry/ui/route_registration_form.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../../common/ui/modal_body.dart';
 
 typedef HitValue = ({
   String title,

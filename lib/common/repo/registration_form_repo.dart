@@ -1,6 +1,5 @@
 import 'package:green_app/common/repo/territory_repo.dart';
 
-import '../../features/route_entry/data/route_registration_entity.dart';
 import '../data/app_db.dart';
 
 class RegistrationFormRepo {

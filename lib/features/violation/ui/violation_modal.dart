@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:green_app/common/repo/camera_repo.dart';
 import 'package:green_app/common/ui/modal_body.dart';
+import 'package:green_app/features/violation/ui/take_picture_screen.dart';
 import 'package:green_app/resources/resources.dart';
 
 class ViolationSendModalBody extends StatelessWidget {
@@ -67,7 +69,7 @@ class FeedbackMessageWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: InkWell(
-        onTap: () => (),
+        onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TakePictureScreen(camera: CameraRepoSingleton().cameras.first))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:green_app/common/data/route_entity.dart';
-import 'package:green_app/common/repo/registration_form_repo.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
-import '../../../common/data/app_db.dart';
-import '../../../common/repo/route_form_notifier.dart'; // Import your repo here
+// Import your repo here
 
 class RouteRegistrationFormWidget extends StatefulWidget {
   const RouteRegistrationFormWidget({super.key, required this.route});
@@ -51,7 +48,7 @@ class _RouteRegistrationFormWidgetState
               Center(
                 child: Text(
                   widget.route.name,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
               TextFormField(
@@ -162,29 +159,11 @@ class _RouteRegistrationFormWidgetState
                     // Validate the form
                     if (_formKey.currentState!.validate()) {
                       // Create a RegistrationFormEntry object
-                      print('ВАЛИДНОЕ ЗАПОЛНЕНИЕ');
                       DateTime parsedArrivalDate = dateFormat.parseStrict(arrivalDateController.text);
                       print(parsedArrivalDate);
                       // DateTime parsedBirthDate = dateFormat.parseStrict(birthDateController.text);
                       // print(parsedBirthDate);
                       print(arrivalDateController.text);
-                      RegistrationFormEntry newForm = RegistrationFormEntry(
-                        // id: int.parse(idController.text),
-                        id: 0,
-                        arrivalDate: parsedArrivalDate,
-                        lastName: lastNameController.text,
-                        firstName: firstNameController.text,
-                        middleName: middleNameController.text,
-                        birthDate: parsedArrivalDate,
-                        nationality: nationalityController.text,
-                        gender: genderController.text,
-                        passportNumber:
-                            int.parse(passportNumberController.text),
-                        email: emailController.text,
-                        phone: phoneController.text,
-                        visitPurpose: visitPurposeController.text,
-                        visitFormat: visitFormatController.text,
-                      );
 
                       // context
                       //     .read<RouteRegistrationFormNotifier>()

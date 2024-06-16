@@ -29,20 +29,37 @@ class RouteModalBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Align(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                backgroundColor: Theme.of(context).primaryColor,
-                foregroundColor: Colors.white.withOpacity(0.9)),
-            onPressed: () => Navigator.pop(context),
-            child: const Text(
-              'Отправить оценку',
-            ),
-          ),
-        ),
+        AppElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          buttonText: 'Отправить оценку',
+        )
       ],
+    );
+  }
+}
+
+class AppElevatedButton extends StatelessWidget {
+  const AppElevatedButton({
+    super.key,
+    required this.onPressed,
+    required this.buttonText,
+  });
+
+  final Function()? onPressed;
+  final String buttonText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            backgroundColor: Theme.of(context).primaryColor,
+            foregroundColor: Colors.white.withOpacity(0.9)),
+        onPressed: onPressed,
+        child:  Text(buttonText),
+      ),
     );
   }
 }
