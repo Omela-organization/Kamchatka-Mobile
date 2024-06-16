@@ -10,17 +10,46 @@ import 'package:sqlite3/sqlite3.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 import 'package:path/path.dart' as p;
+
+import '../../features/route_entry/data/route_registration_entity.dart';
+
 part 'app_db.g.dart';
 
-@DriftDatabase(tables: [Routes])
+@DriftDatabase(tables: [Routes, RegistrationForms])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;
 
+  Stream<List<RegistrationFormEntry>> watchRegistrationForms() {
+    return (select(registrationForms)).watch();
+  }
+
+  Future<void> insertRegistrationForm(
+      RegistrationFormEntry registrationFormEntry) async {
+    into(registrationForms).insert(
+      RegistrationFormsCompanion.insert(
+        arrivalDate: registrationFormEntry.arrivalDate,
+        lastName: registrationFormEntry.lastName,
+        firstName: registrationFormEntry.firstName,
+        middleName: registrationFormEntry.middleName,
+        birthDate: registrationFormEntry.birthDate,
+        nationality: registrationFormEntry.nationality,
+        gender: registrationFormEntry.gender,
+        passportNumber: registrationFormEntry.passportNumber,
+        email: registrationFormEntry.email,
+        phone: registrationFormEntry.phone,
+        visitPurpose: registrationFormEntry.visitPurpose,
+        visitFormat: registrationFormEntry.visitFormat,
+      ),
+    );
+  }
+
   Future<void> insertRoute(RouteEntity route) async {
-    final coordsJson = jsonEncode(route.coords.map((coord) => [coord.longitude, coord.latitude]).toList());
+    final coordsJson = jsonEncode(route.coords
+        .map((coord) => [coord.longitude, coord.latitude])
+        .toList());
     into(routes).insert(
       RoutesCompanion(
         name: Value(route.name),
@@ -33,7 +62,8 @@ class AppDatabase extends _$AppDatabase {
     );
   }
 
-  Future<void> loadRoutesFromBackend(List<Map<String, dynamic>> jsonData) async {
+  Future<void> loadRoutesFromBackend(
+      List<Map<String, dynamic>> jsonData) async {
     for (var json in jsonData) {
       final route = RouteEntity.fromBackendJson(json);
       await insertRoute(route);

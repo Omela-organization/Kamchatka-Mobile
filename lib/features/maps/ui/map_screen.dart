@@ -5,6 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:green_app/common/data/route_entity.dart';
 import 'package:green_app/common/data/territory_entity.dart';
 import 'package:green_app/common/repo/territory_repo.dart';
+import 'package:green_app/features/route_entry/ui/route_registration_form.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../common/ui/modal_body.dart';
@@ -160,7 +161,8 @@ class _MapScreenState extends State<MapScreen> {
               children: [
                 Text(
                   territory.name,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 IconButton(
                   icon: const Icon(Icons.close),
@@ -191,6 +193,14 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                       // subtitle: Text(TrackTypeExt.getString(route.trackType)),
                       // dense: true,
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RouteRegistrationFormWidget(
+                            route: route,
+                          ),
+                        ),
+                      ),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,
                         // color: Theme.of(context).primaryColor,
