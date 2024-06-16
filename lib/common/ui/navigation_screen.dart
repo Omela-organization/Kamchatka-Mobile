@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:green_app/common/data/route_entity.dart';
 import 'package:green_app/features/maps/ui/map_screen.dart';
 import 'package:green_app/features/places/ui/mock_place_list.dart';
 import 'package:green_app/common/ui/test_screen.dart';
 
+import '../data/territory_entity.dart';
 import 'main_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+  const NavigationScreen({
+    super.key,
+    required this.routes,
+    required this.territories,
+  });
+
+  final List<RouteEntity> routes;
+  final List<TerritoryEntity> territories;
 
   @override
   State<NavigationScreen> createState() => _NavigationScreenState();
@@ -14,11 +23,14 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = <Widget>[
+  late final List<Widget> _widgetOptions = <Widget>[
     MainScreen(
       placeModels: mockPlaceList,
     ),
-    const MapScreen(),
+    MapScreen(
+      routes: widget.routes,
+      territories: widget.territories,
+    ),
     const TestScreen(),
   ];
 
@@ -49,7 +61,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.transfer_within_a_station),
-            label: 'Тест',
+            label: 'Обращения',
           ),
         ],
         currentIndex: _selectedIndex,

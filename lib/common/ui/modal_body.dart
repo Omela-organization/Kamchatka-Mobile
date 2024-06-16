@@ -25,7 +25,7 @@ class ModalBody extends StatelessWidget {
       child: Padding(
         padding: padding ??
             EdgeInsets.only(
-              top: 10,
+              top: 20,
               bottom: MediaQuery.of(context).viewInsets.bottom + 10,
               right: 20,
               left: 20,
