@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:green_app/common/repo/camera_repo.dart';
 import 'package:green_app/common/repo/route_form_notifier.dart';
 import 'package:green_app/features/onboarding/ui/onboarding_page.dart';
+import 'package:is_first_run/is_first_run.dart';
 import 'package:provider/provider.dart';
 
 import '../common/repo/registration_form_repo.dart';
@@ -17,10 +18,7 @@ void main() async {
 
   await CameraRepoSingleton().init();
 
-  // При первом открытии приложения
-  // 1. Сделать запрос на получение маршрутов
-  // 2. Распарсить все маршруты и сохранить в drift
-  // bool firstRun = await IsFirstRun.isFirstRun();
+  bool firstRun = await IsFirstRun.isFirstRun();
   // if (firstRun) {
   //
   // }
@@ -28,7 +26,9 @@ void main() async {
   // await database.loadRoutesFromBackend(exampleData);
   // print(RouteEntity.fromBackendJson(
   //     jsonDecode(track) as Map<String, dynamic>));
-  runApp(const MainApp());
+  runApp( MainApp(
+    firstRun: firstRun,
+  ));
 }
 
 Future<String> loadJson() async {
@@ -38,7 +38,10 @@ Future<String> loadJson() async {
 class MainApp extends StatelessWidget {
   const MainApp({
     super.key,
+    required this.firstRun,
   });
+
+  final bool firstRun;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class MainApp extends StatelessWidget {
         localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
         supportedLocales: const [Locale('ru')],
         debugShowCheckedModeBanner: false,
-        home: const MyPageView(),
+        home: firstRun ? const MyPageView() : const NavigationScreen(),
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(

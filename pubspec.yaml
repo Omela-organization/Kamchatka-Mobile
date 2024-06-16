@@ -25,6 +25,7 @@ dependencies:
   provider: ^6.1.2
   intl: ^0.18.1
   camera: ^0.11.0+1
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   drift_dev: ^2.18.0
@@ -42,6 +43,10 @@ flutter:
     - assets/tracks/
     - assets/territories.json
     - assets/images/onboarding/
+    - assets/achievments/green/
+    - assets/achievments/gray/
+    - assets/achievments/
+    - assets/achievments/png/
 
 dependency_overrides:
   meta: ">=1.11.0 <1.15.0"
