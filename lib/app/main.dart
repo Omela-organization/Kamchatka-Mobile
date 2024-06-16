@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:green_app/common/repo/camera_repo.dart';
 import 'package:green_app/common/repo/route_form_notifier.dart';
+import 'package:green_app/features/onboarding/ui/onboarding_page.dart';
 import 'package:provider/provider.dart';
 
 import '../common/repo/registration_form_repo.dart';
@@ -49,7 +50,7 @@ class MainApp extends StatelessWidget {
         localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
         supportedLocales: const [Locale('ru')],
         debugShowCheckedModeBanner: false,
-        home: const NavigationScreen(),
+        home: const MyPageView(),
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(

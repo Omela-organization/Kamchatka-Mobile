@@ -3,6 +3,7 @@ import 'package:green_app/features/maps/ui/map_screen.dart';
 import 'package:green_app/features/places/ui/mock_place_list.dart';
 import 'package:green_app/common/ui/test_screen.dart';
 
+import '../../features/achievements/ui/achievements_screen.dart';
 import 'main_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -15,9 +16,10 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationScreenState extends State<NavigationScreen> {
   int _selectedIndex = 0;
   late final List<Widget> _widgetOptions = <Widget>[
-    MainScreen(
-      placeModels: mockPlaceList,
-    ),
+    // MainScreen(
+    //   placeModels: mockPlaceList,
+    // ),
+    const AchievementsScreen(),
     const MapScreen(),
     const TestScreen(),
   ];

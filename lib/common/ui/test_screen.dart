@@ -10,68 +10,70 @@ class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ListTile(
-            title: const Text('Оцени маршрут'),
-            onTap: () => showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: (context) => const RouteModalBody(),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ListTile(
+              title: const Text('Оцени маршрут'),
+              onTap: () => showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => const RouteModalBody(),
+              ),
             ),
-          ),
-          ListTile(
-            title: const Text('Отправь сообщение об экологическом нарушении'),
-            onTap: () => showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: (context) => const ViolationSendModalBody(),
+            ListTile(
+              title: const Text('Отправь сообщение об экологическом нарушении'),
+              onTap: () => showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => const ViolationSendModalBody(),
+              ),
             ),
-          ),
-          // ListTile(
-          //   title: const Text('Посмотри свои заявки'),
-          //   onTap: () => showModalBottomSheet(
-          //     isScrollControlled: true,
-          //     context: context,
-          //     builder: (context) => ModalBody(title: 'Заявки', bodyWidget: [
-          //       StreamBuilder<List<RegistrationFormEntry>>(
-          //         stream: context
-          //             .read<RouteRegistrationFormNotifier>()
-          //             .watchForms(),
-          //         builder: (context, snapshot) {
-          //           if (snapshot.hasError) {
-          //             return Text(
-          //               'Хьюстон у нас проблемы',
-          //               style: Theme.of(context)
-          //                   .textTheme
-          //                   .titleLarge
-          //                   ?.copyWith(color: Colors.red),
-          //             );
-          //           } else if (snapshot.hasData) {
-          //             print('snapshot_data: ${snapshot.data}');
-          //             return Column(
-          //               children:
-          //                   snapshot.data!.map((e) => Text(e.phone)).toList(),
-          //             );
-          //             //   Text(
-          //             //   'Хьюстон у нас нет проблем',
-          //             //   style: Theme.of(context)
-          //             //       .textTheme
-          //             //       .titleLarge
-          //             //       ?.copyWith(color: Colors.green),
-          //             // );
-          //           }
-          //           return Text(
-          //             'Я хз что это вообще',
-          //             style: Theme.of(context).textTheme.titleLarge,
-          //           );
-          //         },
-          //       ),
-          //     ]),
-          //   ),
-          // )
-        ],
+            // ListTile(
+            //   title: const Text('Посмотри свои заявки'),
+            //   onTap: () => showModalBottomSheet(
+            //     isScrollControlled: true,
+            //     context: context,
+            //     builder: (context) => ModalBody(title: 'Заявки', bodyWidget: [
+            //       StreamBuilder<List<RegistrationFormEntry>>(
+            //         stream: context
+            //             .read<RouteRegistrationFormNotifier>()
+            //             .watchForms(),
+            //         builder: (context, snapshot) {
+            //           if (snapshot.hasError) {
+            //             return Text(
+            //               'Хьюстон у нас проблемы',
+            //               style: Theme.of(context)
+            //                   .textTheme
+            //                   .titleLarge
+            //                   ?.copyWith(color: Colors.red),
+            //             );
+            //           } else if (snapshot.hasData) {
+            //             print('snapshot_data: ${snapshot.data}');
+            //             return Column(
+            //               children:
+            //                   snapshot.data!.map((e) => Text(e.phone)).toList(),
+            //             );
+            //             //   Text(
+            //             //   'Хьюстон у нас нет проблем',
+            //             //   style: Theme.of(context)
+            //             //       .textTheme
+            //             //       .titleLarge
+            //             //       ?.copyWith(color: Colors.green),
+            //             // );
+            //           }
+            //           return Text(
+            //             'Я хз что это вообще',
+            //             style: Theme.of(context).textTheme.titleLarge,
+            //           );
+            //         },
+            //       ),
+            //     ]),
+            //   ),
+            // )
+          ],
+        ),
       ),
     );
   }

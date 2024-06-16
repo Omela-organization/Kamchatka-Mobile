@@ -41,6 +41,7 @@ flutter:
     - assets/images/violation/
     - assets/tracks/
     - assets/territories.json
+    - assets/images/onboarding/
 
 dependency_overrides:
   meta: ">=1.11.0 <1.15.0"

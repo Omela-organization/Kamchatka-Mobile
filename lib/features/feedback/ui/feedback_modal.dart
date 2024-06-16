@@ -43,10 +43,14 @@ class AppElevatedButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.buttonText,
+    this.backgroundColor,
+    this.textColor,
   });
 
   final Function()? onPressed;
   final String buttonText;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +59,8 @@ class AppElevatedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: Theme.of(context).primaryColor,
-            foregroundColor: Colors.white.withOpacity(0.9)),
+            backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
+            foregroundColor: textColor ?? Colors.white.withOpacity(0.9)),
         onPressed: onPressed,
         child:  Text(buttonText),
       ),
