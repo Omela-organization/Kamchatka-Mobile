@@ -159,11 +159,9 @@ class _RouteRegistrationFormWidgetState
                     // Validate the form
                     if (_formKey.currentState!.validate()) {
                       // Create a RegistrationFormEntry object
-                      DateTime parsedArrivalDate = dateFormat.parseStrict(arrivalDateController.text);
-                      print(parsedArrivalDate);
+                      dateFormat.parseStrict(arrivalDateController.text);
                       // DateTime parsedBirthDate = dateFormat.parseStrict(birthDateController.text);
                       // print(parsedBirthDate);
-                      print(arrivalDateController.text);
 
                       // context
                       //     .read<RouteRegistrationFormNotifier>()

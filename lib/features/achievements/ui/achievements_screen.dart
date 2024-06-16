@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:green_app/resources/resources.dart';
 
 class AchievementsScreen extends StatelessWidget {
@@ -35,10 +34,14 @@ class AchievementsScreen extends StatelessWidget {
   Future<bool> _checkIfAssetExists(String assetPath) async {
     try {
       await rootBundle.load(assetPath);
-      print('exist;');
+      if (kDebugMode) {
+        print('exist;');
+      }
       return true;
     } catch (e) {
-      print('doesnot exist');
+      if (kDebugMode) {
+        print('doesnot exist');
+      }
       return false;
     }
   }

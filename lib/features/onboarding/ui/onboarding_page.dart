@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:green_app/features/feedback/ui/feedback_modal.dart';
-import 'package:green_app/resources/resources.dart';
 
 import '../../../common/ui/navigation_screen.dart';
 
@@ -72,7 +70,10 @@ class OnboardingBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(getOnboardingPath(currentIdx));
+
+    if (kDebugMode) {
+      print(getOnboardingPath(currentIdx));
+    }
     return Stack(
       alignment: Alignment.center,
       fit: StackFit.expand,
@@ -104,7 +105,7 @@ class OnboardingBodyWidget extends StatelessWidget {
               height: 15,
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 20, right: 20, left: 20),
+              padding: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
               child: currentIdx == totalNumber - 1
                   ? Align(
                       alignment: Alignment.bottomLeft,

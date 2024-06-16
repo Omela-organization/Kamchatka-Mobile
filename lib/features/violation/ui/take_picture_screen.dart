@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:green_app/features/feedback/ui/feedback_modal.dart';
 
@@ -76,7 +77,9 @@ class TakePictureScreenState extends State<TakePictureScreen> {
               ),
             );
           } catch (e) {
-            print(e);
+            if (kDebugMode) {
+              print(e);
+            }
           }
         },
         child: const Icon(Icons.camera_alt),

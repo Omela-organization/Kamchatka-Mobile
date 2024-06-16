@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:green_app/features/maps/ui/map_screen.dart';
-import 'package:green_app/features/places/ui/mock_place_list.dart';
 import 'package:green_app/common/ui/test_screen.dart';
 
 import '../../features/achievements/ui/achievements_screen.dart';
-import 'main_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});

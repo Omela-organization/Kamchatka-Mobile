@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green_app/features/violation/ui/violation_modal.dart';
 import 'package:green_app/features/feedback/ui/feedback_modal.dart';
