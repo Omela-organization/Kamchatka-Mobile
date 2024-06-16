@@ -7,6 +7,14 @@ import 'package:green_app/common/data/territory_entity.dart';
 import 'package:green_app/common/repo/territory_repo.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../../common/ui/modal_body.dart';
+
+typedef HitValue = ({
+  String title,
+  String subtitle,
+  TerritoryEntity territoryEntity,
+});
+
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
@@ -15,8 +23,9 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  late final MapController _mapController;
+  final LayerHitNotifier<HitValue> _hitNotifier = ValueNotifier(null);
 
+  late final MapController _mapController;
   final Map<int, Color> territorryColor = {};
   late final List<RouteEntity> routes;
   late final List<TerritoryEntity> territories;
@@ -72,22 +81,45 @@ class _MapScreenState extends State<MapScreen> {
               );
             }),
           ),
-          PolygonLayer(
-            // hitNotifier: ,
-            polygons: List.generate(territories.length, (index) {
-              final territory = territories[index];
-              late final Color trackColor;
-              if (!territorryColor.containsKey((territory.id))) {
-                territorryColor[territory.id] = generateBrightColor();
-              }
-              trackColor = territorryColor[territory.id]!;
-              return Polygon(
-                points: territory.coords!,
-                color: trackColor.withOpacity(0.5),
-                borderColor: Colors.blueAccent,
-                borderStrokeWidth: 1,
-              );
-            }),
+          GestureDetector(
+            onTap: () => _openTouchedGonsModal(
+              'Tapped',
+              _hitNotifier.value!.hitValues,
+              _hitNotifier.value!.coordinate,
+              _hitNotifier.value!.hitValues.first.territoryEntity,
+            ),
+            // onLongPress: () => _openTouchedGonsModal(
+            //   'Long pressed',
+            //   _hitNotifier.value!.hitValues,
+            //   _hitNotifier.value!.coordinate,
+            // ),
+            // onSecondaryTap: () => _openTouchedGonsModal(
+            //   'Secondary tapped',
+            //   _hitNotifier.value!.hitValues,
+            //   _hitNotifier.value!.coordinate,
+            // ),
+            child: PolygonLayer(
+              hitNotifier: _hitNotifier,
+              polygons: List.generate(territories.length, (index) {
+                final territory = territories[index];
+                late final Color trackColor;
+                if (!territorryColor.containsKey((territory.id))) {
+                  territorryColor[territory.id] = generateBrightColor();
+                }
+                trackColor = territorryColor[territory.id]!;
+                return Polygon(
+                  points: territory.coords!,
+                  color: trackColor.withOpacity(0.5),
+                  borderColor: Colors.blueAccent,
+                  borderStrokeWidth: 1,
+                  hitValue: (
+                    title: 'Basic Filled Polygon',
+                    subtitle: 'Nothing really special here...',
+                    territoryEntity: territory,
+                  ),
+                );
+              }),
+            ),
           ),
         ],
       ),
@@ -108,8 +140,82 @@ class _MapScreenState extends State<MapScreen> {
     HSLColor oppositeHslColor = hslColor.withHue(newHue);
     return oppositeHslColor.toColor();
   }
-}
 
-// class TerritoryNotifiet extends LayerHitNotifier<int> {
-//
-// }
+  void _openTouchedGonsModal(
+    String eventType,
+    List<HitValue> tappedLines,
+    LatLng coords,
+    TerritoryEntity territory,
+  ) {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (context) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  territory.name,
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => Navigator.maybePop(context),
+                ),
+              ],
+            ),
+            if (territory.description != null) Text(territory.description!),
+            const SizedBox(height: 8),
+            const Divider(),
+            Expanded(
+              child: ListView.separated(
+                shrinkWrap: true,
+                separatorBuilder: (context, index) {
+                  return const Divider();
+                },
+                itemBuilder: (context, index) {
+                  final route = territory.routes?[index];
+                  if (route != null) {
+                    return ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        route.name,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          // color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      // subtitle: Text(TrackTypeExt.getString(route.trackType)),
+                      // dense: true,
+                      trailing: const Icon(
+                        Icons.keyboard_arrow_right,
+                        // color: Theme.of(context).primaryColor,
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+                itemCount: territory.routes!.length,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Закрыть'),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

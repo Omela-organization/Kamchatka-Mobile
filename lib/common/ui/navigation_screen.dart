@@ -18,7 +18,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     MainScreen(
       placeModels: mockPlaceList,
     ),
-    MapScreen(),
+    const MapScreen(),
     const TestScreen(),
   ];
 
@@ -31,12 +31,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Это Камчатка.'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      // appBar: AppBar(title: const Text('Это Камчатка.')),
+      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

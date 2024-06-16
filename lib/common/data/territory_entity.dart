@@ -1,3 +1,4 @@
+import 'package:green_app/common/data/route_entity.dart';
 import 'package:latlong2/latlong.dart';
 
 class TerritoryEntity {
@@ -7,6 +8,7 @@ class TerritoryEntity {
     required this.description,
     // required this.territoryGeoType,
      this.coords,
+     this.routes,
   });
 
   final int id;
@@ -15,11 +17,12 @@ class TerritoryEntity {
   // final TerritoryGeoType territoryGeoType;
   final List<LatLng>? coords;
   final String? description;
+  final List<RouteEntity>? routes;
 
-  factory TerritoryEntity.fromBackendJson(Map<String, dynamic> json) {
-
+  factory TerritoryEntity.fromBackendJson(Map<String, dynamic> json, List<RouteEntity>? routes) {
+    final id = json['id'] as int;
     return TerritoryEntity(
-      id: json['id'] as int,
+      id: id,
       name: json['name'],
       description: json['description'],
       // territoryGeoType: TerritoryGeoTypeExt.geoType(json['data']['type']),
@@ -29,6 +32,7 @@ class TerritoryEntity {
           json['data']['type'],
         ),
       ),
+      routes: routes?.where((element) => element.territoryId == id).toList(),
     );
   }
 
